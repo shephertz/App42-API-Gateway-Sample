@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="core" default="jar">
+
+    <!-- The local.properties file is created and updated by the 'android' tool.
+         It contains the path to the SDK. It should *NOT* be checked in in Version
+         Control Systems. -->
+    <property file="build.properties" />
+
+<path id="main.classpath">
+ <pathelement location="bin"/>
+    <fileset dir="lib">
+        <include name="*.jar"/>
+    </fileset>
+ </path>
+
+   	
+	<target name="compile" depends="clean" > 
+	
+		 <javac srcdir="src" debug="true"
+		           destdir="bin"
+		           source="1.7"
+		           classpathref="main.classpath" includes="**/*.java,**/*.properties"  />
+		<!--javac srcdir="javamod" debug="true"
+		           destdir="mods/app42.java.customcode-v1.0"
+		           source="1.7"
+		           classpathref="main.classpath" includes="**/*.java,**/*.properties"  /-->
+			  
+
+		<copy todir="bin">
+		    <fileset dir="src"
+		             includes="**/*.properties" />
+		</copy>
+		<!--copy todir="mods/app42.java.customcode-v1.0">
+		    <fileset dir="javamod"
+		             includes="**/*.properties" />
+		</copy-->
+	</target>
+	
+	<target name="run"  >
+		
+		 <java classname="com.shephertz.app42.paas.customcode.ProxyMod"
+           fork="true" 
+           failonerror="true"
+           maxmemory="256m"
+           >
+         <arg value="-h"/>
+         <classpath>
+			<pathelement location="${jarFile}.jar"/>
+			<fileset dir="lib">
+				<include name="**/*.jar"/>
+			</fileset>
+			<pathelement location="classes"/>
+		</classpath>
+       </java>
+	</target>
+	
+	
+	
+	 <target name="clean" description="Removes output files ">
+	      
+	        <delete dir="bin/com" verbose="true" />
+			<delete dir="bin/classes" verbose="true" />
+	    </target>
+	<target name="jar" depends="compile" > 
+	
+	 <jar destfile="${jarFile}.jar">
+	      <fileset dir="bin">
+			<include name="**/*.class" />
+			<include name="**/*.properties" />
+			<exclude name="**/*Test* "/>
+	      </fileset>
+	    </jar>
+	</target>
+</project>
