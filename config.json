@@ -1,0 +1,41 @@
+{
+    "config": {
+        "allowedMethod": [
+            "POST"
+        ],
+        "proxy": {
+            "protocol": "http://",
+            "host": "",
+            "port": "",
+            "uri": ""
+        },
+        "entryClass": "com.app42.db.FetchAPI"
+    },
+    "settings": {
+        "burstLimit": -1,
+        "maxRequestSizeKB": -1,
+        "signatureValidation": "",
+        "timeStampValidation": "",
+        "tsValidityInSec": -1,
+        "allowedRequestTimeMS": -1,
+        "allowedDomain": "",
+        "dataSign": "",
+        "analytics": "",
+        "logging": "",
+        "allowedContentType": [
+            "application/xml"
+        ],
+        "authType": "Key",
+        "authentication": true,
+        "APIPrice": 0,
+        "whiteListIP": [
+            "0.0.0.0"
+        ],
+        "blackListIP": [],
+        "grantType": "",
+        "authorizationUrl": "",
+        "redirectionUrl": "",
+        "apiState": true,
+        "CORSE": ""
+    }
+}
