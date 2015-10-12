@@ -96,8 +96,14 @@ public class RESTAPIConnector {
 		if (orgName == null || orgKey == null) {
 			throw new RuntimeException("orgName/orgKey can not be null or blank");
 		}
+		String body  = null;
+		if(filePath.startsWith("file:////")) {
+			filePath = filePath.replaceAll("file:////", "");
+			body = new String(Files.readAllBytes(Paths.get(filePath))); 
+		}else {
+			body = filePath;
+		}
 		
-		String body = new String(Files.readAllBytes(Paths.get(filePath)));
 		RESTAPIConnector uplaodHandler = new RESTAPIConnector();
 		System.out.println("############# Sending Request to : " + baseURL + " : " + body + " ###############");
 		uplaodHandler.sendPost(baseURL, body, orgName, orgKey);

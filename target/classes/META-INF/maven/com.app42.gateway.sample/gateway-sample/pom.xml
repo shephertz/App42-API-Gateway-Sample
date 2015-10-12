@@ -136,7 +136,7 @@
 									<mainClass>com.app42.gateway.RESTAPIConnector</mainClass>
 									<arguments>
 										<argument>/provision/iam/</argument>
-										<argument>iam.json</argument>
+										<argument>file:////iam.json</argument>
 										<argument>${project.build.org.name}</argument>
 										<argument>${project.build.org.key}</argument>
 										<argument>${project.build.host}</argument>
@@ -169,7 +169,40 @@
 									<mainClass>com.app42.gateway.RESTAPIConnector</mainClass>
 									<arguments>
 										<argument>/provision/api/auth/</argument>
-										<argument>attach.json</argument>
+										<argument>file:////attach.json</argument>
+										<argument>${project.build.org.name}</argument>
+										<argument>${project.build.org.key}</argument>
+										<argument>${project.build.host}</argument>
+										<argument>${project.build.port}</argument>
+									</arguments>
+									<classpathScope>test</classpathScope>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>uploadSpecs</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<executions>
+							<execution>
+								<id>upload Specs</id>
+								<phase>install</phase>
+								<goals>
+									<goal>java</goal>
+								</goals>
+								<configuration>
+									<mainClass>com.app42.gateway.RESTAPIConnector</mainClass>
+									<arguments>
+										<argument>/provision/specs/${project.build.api.version}/${project.build.api.name}</argument>
+										<argument>testBody</argument>
 										<argument>${project.build.org.name}</argument>
 										<argument>${project.build.org.key}</argument>
 										<argument>${project.build.host}</argument>

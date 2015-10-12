@@ -11,6 +11,9 @@ import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import com.app42.gateway.sample.HttpResponseObject;
+
+
 
 @Api(value = "/external/info/", authorizations = @Authorization("my_auth"))
 @Path("external/info/")
@@ -29,4 +32,13 @@ public class Resource1041 {
     public void getTest2(@HeaderParam(value = "name") ArrayList<String> tenantId) {
         return;
     }
+    
+    @ApiOperation(value = "API4")
+    @GET
+    @Path("/path3")
+    @Produces({"application/json", "application/xml"})
+    public HttpResponseObject execute() {
+    	return null;
+    }
+
 }
