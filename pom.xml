@@ -24,9 +24,8 @@
 		<dependency>
 			<artifactId>App42CCLib</artifactId>
 			<groupId>com.shephertz.app42.customcodelib</groupId>
-			<scope>system</scope>
-			<version>0.6</version>
-			<systemPath>${basedir}/locallib/app42CCLib-0.6.1.jar</systemPath>
+			<scope>test</scope>
+			<version>0.6.3</version>
 		</dependency>
 
 		<dependency>

@@ -10,6 +10,8 @@ import javax.ws.rs.Path;
 import com.shephertz.app42.paas.customcode.Executor;
 import com.shephertz.app42.paas.customcode.HttpRequestObject;
 import com.shephertz.app42.paas.customcode.HttpResponseObject;
+import com.shephertz.app42.paas.customcode.PostProcessRuleExecutor;
+import com.shephertz.app42.paas.customcode.PreProcessRuleExecutor;
 
 /**
  * @author Ajay
@@ -18,14 +20,14 @@ import com.shephertz.app42.paas.customcode.HttpResponseObject;
 
 
 @Path("external/info/")
-public class MyAPI implements Executor {
+public class MyAPI implements Executor, PreProcessRuleExecutor, PostProcessRuleExecutor {
 	@Override
 	public HttpResponseObject execute(HttpRequestObject requestObject) {
 		// Get Request Body
 		String method = requestObject.getMethod();
 		String requestBody = requestObject.getBody();
 		// Get Header Map
-		HashMap<String, String> requestHeaders = requestObject.getHeaderMap();
+		HashMap<String, String> requestHeaders = null;
 		System.out.println(" ############### Executor Called ############### " + method);
 		// ########### Write your Logic Below ############//
 		// ................................................//
@@ -41,6 +43,19 @@ public class MyAPI implements Executor {
 		int responseStatus = 200; // OK...
 		String responseMessage = "{'message':'Success/Custom Message'}"; 
 		return new HttpResponseObject(responseStatus, responseMessage, responseHeader);
+	}
+
+	@Override
+	public HttpResponseObject postProcessExecute(HttpRequestObject arg0) {
+		// TODO Auto-generated method stub
+		System.out.println("########## This is Post flow #############");
+		return null;
+	}
+
+	@Override
+	public HttpResponseObject preProcessExecute(HttpRequestObject arg0) {
+		System.out.println("########## This is Pre flow #############");
+		return null;
 	}
 
 }

@@ -11,7 +11,7 @@
         "analytics": "",
         "logging": "",
         "allowedContentType": [
-            "application/xml"
+            "ALL"
         ],
         "authType": "Key",
         "authentication": true,

@@ -1,15 +1,105 @@
 {
     "config": {
         "allowedMethod": [
-            "POST"
+            {"name":"POST","description":"this is get"},
+             {"name":"GET","description":"this is post"}
         ],
+        "adaptorType": "JAR",
+		"description" : "This si my test api",
         "proxy": {
             "protocol": "http://",
             "host": "",
             "port": "",
             "uri": ""
         },
-        "entryClass": "com.app42.db.FetchAPI"
+        "entryClass": "com.app42.gateway.sample.MyAPI",
+        "SOAP": {
+            "wsdlEndPoint": "http://localhost:8070/ws/HelloWorld?wsdl",
+            "opsEndPoint": "http://localhost:8070/ws/HelloWorld"
+        },
+        "params": [
+            {
+                "name": "x",
+                "optional": false,
+                "default": "abc",
+				 "response": {
+                    "statusCode": 401,
+                    "message": "param blank not allowed"
+                },
+                "methods": [
+                    "POST",
+                    "GET"
+                ]
+            },
+            {
+                "name": "y",
+                "optional": true,
+                "regex": "",
+                "methods": [
+                    "POST",
+                    "GET"
+                ]
+            }
+        ],
+        "headers": [
+            {
+                "name": "x",
+                "optional": false,
+                "default": "abc",
+                "methods": [
+                    "POST",
+                    "GET"
+                ],
+				"response": {
+                    "statusCode": 401,
+                    "message": "header blank not allowed"
+                }
+            },
+            {
+                "name": "y",
+                "optional": true,
+                "regex": "",
+                "methods": [
+                    "GET",
+                    "POST"
+                ]
+            }
+        ],
+        "rules": [
+            {
+                "methods": [
+                    "GET",
+                    "POST"
+                ],
+				"priority":1,
+                "name": "myrule1",
+				"type": "PRE",
+                "condition": "request.getHeaderMap().get(\"apiKey\").indexOf(\"12\")!=-1",
+				"executorClass":"com.app42.gateway.sample.MyPreRule"
+            },
+			{
+                "methods": [
+                    "GET",
+                    "POST"
+                ],
+				"priority":2,
+                "name": "myrule2",
+				"type": "PRE",
+                "condition": "request.getHeaderMap().get(\"apiKey\").indexOf(\"12\")!=-1",
+				"executorClass":"com.app42.gateway.sample.MyPreRule1"
+            },
+			{
+                "methods": [
+                    "GET",
+                    "POST"
+                ],
+                "name": "myrule3",
+				"priority":3,
+				"type": "POST",
+                "condition": "request.headers().get(\"apiKey\").indexOf(\"12\")!=-1",
+				"executorClass":"com.app42.gateway.sample.MyPreRule"
+            }
+        ]
     },
     "settings": {
         "burstLimit": -1,
