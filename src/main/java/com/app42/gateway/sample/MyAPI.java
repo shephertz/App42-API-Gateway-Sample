@@ -46,16 +46,16 @@ public class MyAPI implements Executor, PreProcessRuleExecutor, PostProcessRuleE
 	}
 
 	@Override
-	public HttpResponseObject postProcessExecute(HttpRequestObject arg0) {
+	public void postProcessExecute(HttpRequestObject arg0, HttpResponseObject arg1) {
 		// TODO Auto-generated method stub
 		System.out.println("########## This is Post flow #############");
-		return null;
+		
 	}
 
 	@Override
-	public HttpResponseObject preProcessExecute(HttpRequestObject arg0) {
+	public void preProcessExecute(HttpRequestObject arg0, HttpResponseObject arg1) {
 		System.out.println("########## This is Pre flow #############");
-		return null;
+		
 	}
 
 }

@@ -96,8 +96,19 @@
                 "name": "myrule3",
 				"priority":3,
 				"type": "POST",
-                "condition": "request.headers().get(\"apiKey\").indexOf(\"12\")!=-1",
-				"executorClass":"com.app42.gateway.sample.MyPreRule"
+                "condition": "request.getHeaderMap().get(\"apiKey\").indexOf(\"12\")!=-1",
+				"executorClass":"com.app42.gateway.sample.MyPostRule1"
+            },
+			{
+                "methods": [
+                    "GET",
+                    "POST"
+                ],
+                "name": "myrule4",
+				"priority":4,
+				"type": "POST",
+                "condition": "request.getHeaderMap().get(\"apiKey\").indexOf(\"12\")!=-1",
+				"executorClass":"com.app42.gateway.sample.MyPostRule2"
             }
         ]
     },

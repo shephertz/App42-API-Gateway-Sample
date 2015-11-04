@@ -25,7 +25,7 @@
 			<artifactId>App42CCLib</artifactId>
 			<groupId>com.shephertz.app42.customcodelib</groupId>
 			<scope>test</scope>
-			<version>0.6.3</version>
+			<version>0.6.4</version>
 		</dependency>
 
 		<dependency>
