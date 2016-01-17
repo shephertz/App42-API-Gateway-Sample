@@ -1,6 +1,6 @@
 {
-		"apiName":"MyAPI-Test",
-		"version":"1.3",
-		"iamName":"myIam"
+		"apiName":"MyTestAPI",
+		"version":"1.0",
+		"iamName":"myIam1"
        
 }

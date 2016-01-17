@@ -26,11 +26,13 @@ import org.vertx.java.core.streams.Pump;
  */
 public class UploadHelper {
 
-	CountDownLatch countDown = new CountDownLatch(1);
+	public CountDownLatch countDown = new CountDownLatch(1);
 	public static String host = "localhost";
-	public static String port  = "8081";
+	public static String port  = "8089";
 
-	private void uploadFile(String uri, String filePath, String orgName, String orgKey) {
+	
+	
+	public void uploadFile(String uri, String filePath, String orgName, String orgKey) {
 		final DefaultVertx defaultVertx = new DefaultVertx();
 		System.out.println("Starting....");
 		final HttpClient client = defaultVertx.createHttpClient().setHost(host).setPort(new Integer(port));
@@ -170,7 +172,8 @@ public class UploadHelper {
 		uplaodHandler.uploadFile(baseURL, filePath, orgName, orgKey);
 		uplaodHandler.countDown.await();
 		System.out.println("File Uplaoded..");
-
+		
+		
 	}
 
 }
