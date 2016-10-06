@@ -1,4 +1,4 @@
-package com.shephertz.rules;
+package com.shephertz;
 
 import com.shephertz.app42.paas.customcode.HttpRequestObject;
 import com.shephertz.app42.paas.customcode.HttpResponseObject;
